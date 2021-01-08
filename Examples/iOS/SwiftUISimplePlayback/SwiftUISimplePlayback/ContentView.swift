@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var url: URL?
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(spacing: 0) {
+            VideoView(url: $url)
+                .background(Color.gray)
+            if url == nil {
+                Button("Play") { url = URL(string: "https://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4") }
+            }
+            else {
+                Button("Stop") { url = nil }
+            }
+        }
     }
 }
 
